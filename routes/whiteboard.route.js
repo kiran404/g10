@@ -1,10 +1,10 @@
 const router = require("express").Router();
-
 const whiteboardController = require("../controller/whiteboard.controller");
+const upload = require("./../service/upload.service");
 
-router.get("/:id", whiteboardController.getById);
-router.post("/", whiteboardController.addWhiteboard);
 router.get("/", whiteboardController.getMyWhiteboards);
-router.put("/:id", whiteboardController.update);
+router.post("/", upload.single("image"), whiteboardController.addWhiteboard);
+router.get("/:id", whiteboardController.getById);
+router.put("/:id", upload.single("image"), whiteboardController.update);
 
 module.exports = router;

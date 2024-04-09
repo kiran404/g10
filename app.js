@@ -3,16 +3,17 @@ const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const appRouter = require("./routes");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
+
+const appRouter = require("./routes");
 
 app.get("/", function (req, res, next) {
   res.send("WORKING FINE");

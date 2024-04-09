@@ -19,6 +19,8 @@ const addWhiteboard = async (req, res, next) => {
   try {
     const whiteboard = {
       name: req.body.name,
+      notes: req.body.notes,
+      image: req.file.path,
       updatedAt: new Date(),
       user: {
         connect: { id: req.user.id },
@@ -33,12 +35,21 @@ const addWhiteboard = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
+    var isWhiteboardExist = await whiteBoardService.getById(req.params.id);
+    if (!isWhiteboardExist) {
+      return res.status(400).json(false);
+    }
     const whiteboard = {
-      ...(req.body.name ? { name: req.body.name } : {}),
-      ...(req.body.drawings ? { drawings: req.body.drawings } : {}),
+      name: req.body.name ? req.body.name : isWhiteboardExist.name,
+      notes: req.body.notes ? req.body.notes : isWhiteboardExist.notes,
+      image: req.file.path ? req.file.path : isWhiteboardExist.image,
     };
-    await whiteBoardService.updateWhiteboard(req.params.id, whiteboard);
-    res.status(200).json(true);
+
+    var data = await whiteBoardService.updateWhiteboard(
+      req.params.id,
+      whiteboard
+    );
+    res.status(200).json(data);
   } catch (e) {
     return next(e);
   }
@@ -52,6 +63,8 @@ const getMyWhiteboards = async (req, res, next) => {
     return next(e);
   }
 };
+
+// delete whitboard
 
 module.exports = {
   getById,

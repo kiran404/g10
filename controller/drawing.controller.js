@@ -1,4 +1,3 @@
-
 const addDrawing = async (req, res, next) => {
   console.log("From Drawing");
   try {

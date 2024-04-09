@@ -37,7 +37,6 @@ router.post("/login", async (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    console.log("hello");
     const { username, email, password } = req.body;
 
     const existingUser = await prisma.user.findUnique({
@@ -59,6 +58,8 @@ router.post("/register", async (req, res) => {
         password: hashedPassword, // Hash password before saving to DB in production
       },
     });
+
+    console.log("login responsive: ", user);
 
     res.json(user);
   } catch (error) {

@@ -1,11 +1,8 @@
 const router = require("express").Router();
 const isAuthenticated = require("../middlewares/isAuthenticated.middleware");
-const authRouter = require("./auth.route");
-const userRouter = require("./user.route");
-const whiteboardRouter = require("./whiteboard.route");
 
-router.use("/auth", authRouter);
-router.use("/user", isAuthenticated, userRouter);
-router.use("/whiteboard", isAuthenticated, whiteboardRouter);
+router.use("/auth", require("./auth.route")); //login register
+router.use("/user", isAuthenticated, require("./user.route"));
+router.use("/whiteboard", isAuthenticated, require("./whiteboard.route"));
 
 module.exports = router;
