@@ -29,9 +29,9 @@ const mysql = require("mysql");
 
 // configuration
 const connection = mysql.createConnection({
-  host: "localhost",
+  host: "database-1.cb6qc0ygoxgm.us-east-2.rds.amazonaws.com:3306/mydb",
   port: 3306,
-  database: "database-1.cb6qc0ygoxgm.us-east-2.rds.amazonaws.com:3306/mydb",
+  database: "mydb",
   user: "admin",
   password: "password",
 });
