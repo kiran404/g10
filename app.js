@@ -29,7 +29,7 @@ const mysql = require("mysql");
 
 // configuration
 const connection = mysql.createConnection({
-  host: "database-1.cb6qc0ygoxgm.us-east-2.rds.amazonaws.com:3306/mydb",
+  host: "database-1.cb6qc0ygoxgm.us-east-2.rds.amazonaws.com",
   port: 3306,
   database: "mydb",
   user: "admin",
