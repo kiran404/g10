@@ -20,7 +20,7 @@ const addWhiteboard = async (req, res, next) => {
     const whiteboard = {
       name: req.body.name,
       notes: req.body.notes,
-      image: req.file.path,
+      // image: req.file.path,
       updatedAt: new Date(),
       user: {
         connect: { id: req.user.id },
@@ -42,7 +42,7 @@ const update = async (req, res, next) => {
     const whiteboard = {
       name: req.body.name ? req.body.name : isWhiteboardExist.name,
       notes: req.body.notes ? req.body.notes : isWhiteboardExist.notes,
-      image: req.file.path ? req.file.path : isWhiteboardExist.image,
+      // image: req.file.path ? req.file.path : isWhiteboardExist.image,
     };
 
     var data = await whiteBoardService.updateWhiteboard(
